@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie los valores de estos atributos para modificar la información
 // asociada a un ensamblado.
 [assembly: AssemblyTitle("PaniniStickerWebAPI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Service to make your own Fifa Russia 2018 panini stickers and get stickers information from the online album")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PaniniStickerWebAPI")]
