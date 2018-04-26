@@ -79,6 +79,77 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\Country\ARG.png" />
+    <Content Include="Content\img\Country\AUS.png" />
+    <Content Include="Content\img\Country\BEL.png" />
+    <Content Include="Content\img\Country\BRA.png" />
+    <Content Include="Content\img\Country\COL.png" />
+    <Content Include="Content\img\Country\CRC.png" />
+    <Content Include="Content\img\Country\CRO.png" />
+    <Content Include="Content\img\Country\DEN.png" />
+    <Content Include="Content\img\Country\EGY.png" />
+    <Content Include="Content\img\Country\ENG.png" />
+    <Content Include="Content\img\Country\ESP.png" />
+    <Content Include="Content\img\Country\FRA.png" />
+    <Content Include="Content\img\Country\GER.png" />
+    <Content Include="Content\img\Country\IRN.png" />
+    <Content Include="Content\img\Country\ISL.png" />
+    <Content Include="Content\img\Country\JPN.png" />
+    <Content Include="Content\img\Country\KOR.png" />
+    <Content Include="Content\img\Country\KSA.png" />
+    <Content Include="Content\img\Country\MAR.png" />
+    <Content Include="Content\img\Country\MEX.png" />
+    <Content Include="Content\img\Country\NGA.png" />
+    <Content Include="Content\img\Country\NON.png" />
+    <Content Include="Content\img\Country\PAN.png" />
+    <Content Include="Content\img\Country\PER.png" />
+    <Content Include="Content\img\Country\POL.png" />
+    <Content Include="Content\img\Country\POR.png" />
+    <Content Include="Content\img\Country\RUS.png" />
+    <Content Include="Content\img\Country\SEN.png" />
+    <Content Include="Content\img\Country\SRB.png" />
+    <Content Include="Content\img\Country\SUI.png" />
+    <Content Include="Content\img\Country\SWE.png" />
+    <Content Include="Content\img\Country\TUN.png" />
+    <Content Include="Content\img\Country\URU.png" />
+    <Content Include="Content\img\Frame\ARG.png" />
+    <Content Include="Content\img\Frame\AUS.png" />
+    <Content Include="Content\img\Frame\BEL.png" />
+    <Content Include="Content\img\Frame\BRA.png" />
+    <Content Include="Content\img\Frame\COL.png" />
+    <Content Include="Content\img\Frame\CRC.png" />
+    <Content Include="Content\img\Frame\CRO.png" />
+    <Content Include="Content\img\Frame\DEN.png" />
+    <Content Include="Content\img\Frame\EGY.png" />
+    <Content Include="Content\img\Frame\ENG.png" />
+    <Content Include="Content\img\Frame\ESP.png" />
+    <Content Include="Content\img\Frame\FRA.png" />
+    <Content Include="Content\img\Frame\GER.png" />
+    <Content Include="Content\img\Frame\IRN.png" />
+    <Content Include="Content\img\Frame\ISL.png" />
+    <Content Include="Content\img\Frame\JPN.png" />
+    <Content Include="Content\img\Frame\KOR.png" />
+    <Content Include="Content\img\Frame\KSA.png" />
+    <Content Include="Content\img\Frame\MAR.png" />
+    <Content Include="Content\img\Frame\MEX.png" />
+    <Content Include="Content\img\Frame\NGA.png" />
+    <Content Include="Content\img\Frame\NON.png" />
+    <Content Include="Content\img\Frame\PAN.png" />
+    <Content Include="Content\img\Frame\PER.png" />
+    <Content Include="Content\img\Frame\POL.png" />
+    <Content Include="Content\img\Frame\POR.png" />
+    <Content Include="Content\img\Frame\RUS.png" />
+    <Content Include="Content\img\Frame\SEN.png" />
+    <Content Include="Content\img\Frame\SRB.png" />
+    <Content Include="Content\img\Frame\SUI.png" />
+    <Content Include="Content\img\Frame\SWE.png" />
+    <Content Include="Content\img\Frame\TUN.png" />
+    <Content Include="Content\img\Frame\URU.png" />
+    <Content Include="Content\img\Position\A.png" />
+    <Content Include="Content\img\Position\C.png" />
+    <Content Include="Content\img\Position\D.png" />
+    <Content Include="Content\img\Position\GK.png" />
+    <Content Include="Content\img\Position\NO.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -93,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\Whitney-Semibld.otf" />
+    <Content Include="fonts\Whitney-Semibld.ttf" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
