@@ -149,9 +149,14 @@
     <Content Include="Content\images\Frame\URU.png" />
     <Content Include="Content\images\Position\A.png" />
     <Content Include="Content\images\Position\C.png" />
+    <Content Include="Content\images\Position\Centro.png" />
     <Content Include="Content\images\Position\D.png" />
+    <Content Include="Content\images\Position\Defensa.png" />
+    <Content Include="Content\images\Position\Delantero.png" />
     <Content Include="Content\images\Position\GK.png" />
     <Content Include="Content\images\Position\NO.jpg" />
+    <Content Include="Content\images\Position\None.png" />
+    <Content Include="Content\images\Position\Portero.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="ZABIVAKA.ico" />
