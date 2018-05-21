@@ -18,7 +18,8 @@ namespace ConsoleAppTest
             PrivateFontCollection collection = new PrivateFontCollection();
             collection.AddFontFile(@"D:\aldov\Documents\Visual Studio 2017\Projects\PaniniStickerWebAPI\PaniniStickerWebAPI\fonts\Whitney-Semibld.ttf");
             FontFamily fontFamily = new FontFamily("Whitney Semibold", collection);
-            Font font = new Font(fontFamily, 20);
+            Font font1 = new Font(fontFamily, 19);
+            Font font2 = new Font(fontFamily, 15);
 
 
             string imgCanva = new Program().Overlay("D:\\aldov\\Pictures\\1779331_10152816745620303_3813166502861713682_n.jpg", "image/jpeg");
@@ -31,7 +32,8 @@ namespace ConsoleAppTest
             Bitmap bitmap = (Bitmap)imgTmp;
             Graphics graphics = Graphics.FromImage(bitmap);
 
-            graphics.DrawString("Aldo Vilardy", font, Brushes.Black, new Point(126,725));
+            graphics.DrawString("ALDO FERNANDO VILARDY", font1, Brushes.Black, new Point(120, 703));
+            graphics.DrawString("03-12-1986", font2, Brushes.Black, new Point(189, 640));
 
             bitmap.Save(@"D:\aldov\Pictures\mona.png");
 
