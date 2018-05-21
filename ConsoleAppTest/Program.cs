@@ -1,6 +1,9 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +15,35 @@ namespace ConsoleAppTest
     {
         static void Main(string[] args)
         {
+            PrivateFontCollection collection = new PrivateFontCollection();
+            collection.AddFontFile(@"D:\aldov\Documents\Visual Studio 2017\Projects\PaniniStickerWebAPI\PaniniStickerWebAPI\fonts\Whitney-Semibld.ttf");
+            FontFamily fontFamily = new FontFamily("Whitney Semibold", collection);
+            Font font = new Font(fontFamily, 20);
+
+
+            string imgCanva = new Program().Overlay("D:\\aldov\\Pictures\\1779331_10152816745620303_3813166502861713682_n.jpg", "image/jpeg");
+
+            var fileBytes = (new RestClient(imgCanva)).DownloadData(new RestRequest(Method.GET));
+            //File.WriteAllBytes(Path.Combine("D:\\aldov\\Pictures\\", "monacanva.png"), fileBytes);
+
+            Stream imgStream = new MemoryStream(fileBytes);
+            Image imgTmp = Image.FromStream(imgStream);
+            Bitmap bitmap = (Bitmap)imgTmp;
+            Graphics graphics = Graphics.FromImage(bitmap);
+
+            graphics.DrawString("Aldo Vilardy", font, Brushes.Black, new Point(126,725));
+
+            bitmap.Save(@"D:\aldov\Pictures\mona.png");
+
+            Console.ReadKey();
+        }
+
+        public string Overlay(string imgPath, string mimeType)
+        {
             var client = new RestClient("https://www.imgonline.com.ua/eng/impose-picture-on-another-picture-result.php");
             var request = new RestRequest(Method.POST);
-            request.AddFile("uploadfile", "D:\\aldov\\Pictures\\1779331_10152816745620303_3813166502861713682_n.jpg", "image/jpeg");
+            //request.AddFile("uploadfile", "D:\\aldov\\Pictures\\1779331_10152816745620303_3813166502861713682_n.jpg", "image/jpeg");
+            request.AddFile("uploadfile", imgPath, mimeType);
             request.AddFile("uploadfile2", "D:\\aldov\\Pictures\\panini\\Frame\\7025.png", "image/png");
             request.AddParameter("efset", "2");
             request.AddParameter("efset2", "50");
@@ -33,8 +62,6 @@ namespace ConsoleAppTest
 
 
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
-            //string htnlResponse = response.Content.Replace("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">", "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>").Replace("<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1\">", "<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1\"/>");
             string htnlResponse = response.Content.Replace("1\">", "1\"/>").Replace("/favicon.ico\">", "/favicon.ico\"/>").Replace("design.css\">", "design.css\"/>").Replace("charset=utf-8\">", "charset=utf-8\"/>").Replace("<br>", "<br/>").Replace("&copy;", string.Empty);
 
             var hrefLink = XElement.Parse(htnlResponse)
@@ -42,11 +69,7 @@ namespace ConsoleAppTest
                    .Select(x => x.Attribute("href").Value);
             string imgResultUrl = hrefLink.ElementAt(8);
             string imgDownloadUrl = hrefLink.ElementAt(9);
-            foreach (var item in hrefLink)
-                Console.WriteLine(item);
-
-
-            Console.ReadKey();
+            return imgResultUrl;
         }
     }
 }
