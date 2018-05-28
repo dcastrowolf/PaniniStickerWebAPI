@@ -1,7 +1,9 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
@@ -21,14 +23,14 @@ namespace PaniniWebAPI.Controllers
             byte[] imgFileBytes = (new RestClient(stickerRequest.PhotoUrl)).DownloadData(new RestRequest(Method.GET));
             MemoryStream imgFileStream = new MemoryStream(imgFileBytes);
             Image photo = Image.FromStream(imgFileStream, true, true);
-            Image frame = Image.FromFile(HttpContext.Current.Server.MapPath($@"~/../Content/images/Frame/{stickerRequest.Frame}.png"));
-            Image position = Image.FromFile(HttpContext.Current.Server.MapPath($@"~/../Content/images/Position/{stickerRequest.Position}.png"));
+            Image frame = Image.FromFile(HttpContext.Current.Server.MapPath($@"~/Content/images/Frame/{stickerRequest.Frame}.png"));
+            Image position = Image.FromFile(HttpContext.Current.Server.MapPath($@"~/Content/images/Position/{stickerRequest.Position}.png"));
 
             Image imgCanva = Overlay(photo, frame);
             imgCanva = Overlay(imgCanva, position);
 
             PrivateFontCollection collection = new PrivateFontCollection();
-            collection.AddFontFile(HttpContext.Current.Server.MapPath($@"~/../fonts/Whitney-Semibld.ttf"));
+            collection.AddFontFile(HttpContext.Current.Server.MapPath($@"~/fonts/Whitney-Semibld.ttf"));
             FontFamily fontFamily = new FontFamily("Whitney Semibold", collection);
             Font font1 = new Font(fontFamily, 19);
             Font font2 = new Font(fontFamily, 15);
@@ -45,8 +47,16 @@ namespace PaniniWebAPI.Controllers
                 font2,
                 Brushes.Black,
                 new Point(189, 640));
-            imgCanva.Save(HttpContext.Current.Server.MapPath($@"~/../Content/images/Public/{DateTime.Now.ToString()}"));
-            return new HttpResponseMessage(HttpStatusCode.Accepted);
+            //string uploadedResult = UploadFinalImage(imgCanva);
+            JObject uploadedResult = JObject.Parse(UploadFinalImage(imgCanva));
+
+            //return new HttpResponseMessage(HttpStatusCode.Accepted);
+            return Request.CreateResponse(HttpStatusCode.OK, uploadedResult);
+        }
+        private static string GetMimeType(ImageFormat imageFormat)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            return codecs.First(codec => codec.FormatID == imageFormat.Guid).MimeType;
         }
         private Image Overlay(Image image1, Image image2)
         {
@@ -57,9 +67,9 @@ namespace PaniniWebAPI.Controllers
             var client = new RestClient("https://www.imgonline.com.ua/eng/impose-picture-on-another-picture-result.php");
             var request = new RestRequest(Method.POST);
             //request.AddFile("uploadfile", imgPath, mimeType);
-            request.AddFile("uploadfile", uploadfile.ToArray(), image1.RawFormat.ToString());
+            request.AddFile("uploadfile", uploadfile.ToArray(), GetMimeType(image1.RawFormat));
             //request.AddFile("uploadfile2", "D:\\aldov\\Pictures\\panini\\Frame\\7025.png", "image/png");
-            request.AddFile("uploadfile2", uploadfile2.ToArray(), image2.RawFormat.ToString());
+            request.AddFile("uploadfile2", uploadfile2.ToArray(), GetMimeType(image2.RawFormat));
             request.AddParameter("efset", "2");
             request.AddParameter("efset2", "50");
             request.AddParameter("efset3", "4");
@@ -84,13 +94,28 @@ namespace PaniniWebAPI.Controllers
                    .Select(x => x.Attribute("href").Value);
             string imgResultUrl = hrefLink.ElementAt(8);
             string imgDownloadUrl = hrefLink.ElementAt(9);
+            byte[] imgFileBytes = (new RestClient(imgDownloadUrl)).DownloadData(new RestRequest(Method.GET));
+            MemoryStream imgFileStream = new MemoryStream(imgFileBytes);
+            return Image.FromStream(imgFileStream, true, true);
+        }
+        private string UploadFinalImage(Image imgSticker)
+        {
+            string fileName = $"{DateTime.Now.ToString("ddMMyyyHHmmssfffffff")}_Sticker.png";
+            MemoryStream source = new MemoryStream();
+            imgSticker.Save(source, imgSticker.RawFormat);
 
-            return Image.FromStream(
-                new MemoryStream(
-                    (new RestClient(imgDownloadUrl))
-                    .DownloadData(new RestRequest(Method.GET))),
-                true,
-                true);
+            var client = new RestClient("https://imgbb.com/json");
+            var request = new RestRequest(Method.POST);
+            request.AddCookie("PHPSESSID", "e1337f77d57c68fc747a8cb52e3325ca");
+            request.AddFile("source", source.ToArray(), fileName, GetMimeType(imgSticker.RawFormat));
+            request.AddParameter("type", "file");
+            request.AddParameter("action", "upload");
+            request.AddParameter("privacy", "undefined");
+            request.AddParameter("timestamp", "1527541040686");
+            request.AddParameter("auth_token", "c08e59c27aeeb1cb0f126e3ed3856cf1fd675d06");
+            request.AddParameter("nsfw", "0");
+            IRestResponse response = client.Execute(request);
+            return response.Content;
         }
     }
 }
