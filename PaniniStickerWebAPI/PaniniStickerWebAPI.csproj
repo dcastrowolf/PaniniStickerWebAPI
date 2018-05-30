@@ -177,6 +177,7 @@
     <Content Include="fonts\Whitney-Semibld.otf" />
     <Content Include="fonts\Whitney-Semibld.ttf" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\PaniniStickerWebAPI - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
