@@ -34,11 +34,12 @@ namespace PaniniWebAPI.Controllers
             FontFamily fontFamily = new FontFamily("Whitney Semibold", collection);
             Font font1 = new Font(fontFamily, 19);
             Font font2 = new Font(fontFamily, 15);
+            Font font3 = new Font(fontFamily, 24);
 
             Graphics graphics = Graphics.FromImage(imgCanva);
 
             graphics.DrawString(
-                stickerRequest.FullName,
+                stickerRequest.Club,
                 font1,
                 Brushes.Black,
                 new Point(120, 703));
@@ -46,7 +47,13 @@ namespace PaniniWebAPI.Controllers
                 stickerRequest.DateOfBirthday.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture),
                 font2,
                 Brushes.Black,
-                new Point(189, 640));
+                new Point(189, 639));
+            graphics.DrawString(
+                stickerRequest.FullName,
+                font3,
+                Brushes.Black,
+                new Point(122, 671));
+
             //string uploadedResult = UploadFinalImage(imgCanva);
             JObject uploadedResult = JObject.Parse(UploadFinalImage(imgCanva));
 
@@ -92,8 +99,8 @@ namespace PaniniWebAPI.Controllers
             var hrefLink = XElement.Parse(htnlResponse)
                    .Descendants("a")
                    .Select(x => x.Attribute("href").Value);
-            string imgResultUrl = hrefLink.ElementAt(8);
-            string imgDownloadUrl = hrefLink.ElementAt(9);
+            string imgResultUrl = hrefLink.ElementAt(8).Replace("..", "https://www.imgonline.com.ua/");
+            string imgDownloadUrl = hrefLink.ElementAt(9).Replace("..", "https://www.imgonline.com.ua/");
             byte[] imgFileBytes = (new RestClient(imgDownloadUrl)).DownloadData(new RestRequest(Method.GET));
             MemoryStream imgFileStream = new MemoryStream(imgFileBytes);
             return Image.FromStream(imgFileStream, true, true);
