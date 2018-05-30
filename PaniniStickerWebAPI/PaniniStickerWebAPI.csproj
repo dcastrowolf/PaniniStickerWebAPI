@@ -150,6 +150,7 @@
     <Content Include="Content\images\Frame\SWE.png" />
     <Content Include="Content\images\Frame\TUN.png" />
     <Content Include="Content\images\Frame\URU.png" />
+    <Content Include="Content\images\Logos\AppLogo.png" />
     <Content Include="Content\images\Position\A.png" />
     <Content Include="Content\images\Position\C.png" />
     <Content Include="Content\images\Position\Midfilder.png" />
