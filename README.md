@@ -31,7 +31,7 @@ Service to make your own Fifa Russia 2018 panini stickers.
 | country | "NON" | The Country using uppercase like Colombia "COL" or Russia "RUS" if you don't want a team you can select None "NON"  |
 | debut | 1986 | The year of debut player |
 
-**Here a JSON example of request:**
+**Here a JSON request example:**
 ```json
 {
   "photoUrl": "http://i.somethingawful.com/inserts/articlepics/photoshop/08-06-04-terminators/CapnDeviance.jpg",
