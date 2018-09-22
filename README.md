@@ -1,6 +1,8 @@
 # PaniniStickerWebAPI
 [![license](https://img.shields.io/github/license/aldovilardy/PaniniStickerWebAPI.svg)](https://github.com/aldovilardy/PaniniStickerWebAPI/blob/master/LICENSE)
 
+<a href="https://www.mashape.com/aldovilardy/panini-sticker-generator?&amp;utm_campaign=mashape5-embed&amp;utm_medium=button&amp;utm_source=panini-sticker-generator&amp;utm_content=anchorlink&amp;utm_term=text-light"><img src="https://d1g84eaw0qjo7s.cloudfront.net/images/badges/badge-text-light-e9e35ecb.png" alt="Mashape" width="200" height="38"></a>
+
 ![PaniniStickerWebAPILogo](/PaniniStickerWebAPI/Content/images/Logos/AppLogo.png)
 
 Service to make your own Fifa Russia 2018 panini stickers.
