@@ -135,4 +135,14 @@ Service to make your own Fifa Russia 2018 panini stickers.
     "status_txt": "OK"
 }
 ```
+**Image result:**
+
+*Before*
+
+![Before](https://i.somethingawful.com/inserts/articlepics/photoshop/08-06-04-terminators/CapnDeviance.jpg)
+
+
+*After*
+
+![After](https://image.ibb.co/huRw7y/170620180133225695622_Sticker.png)
 
