@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaniniWebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,33 +8,15 @@ using System.Web.Http;
 
 namespace PaniniStickerWebAPI.Controllers
 {
+    [RoutePrefix("api/v2/StickerGenerator")]
     public class StickerController : ApiController
     {
-        // GET: api/Sticker
-        public IEnumerable<string> Get()
+
+        public IHttpActionResult Post(StickerRequest stickerRequest)
         {
-            return new string[] { "value1", "value2" };
+            //TODO: Implement the facade of this http resource
+            throw new NotImplementedException();
         }
 
-        // GET: api/Sticker/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Sticker
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Sticker/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Sticker/5
-        public void Delete(int id)
-        {
-        }
     }
 }

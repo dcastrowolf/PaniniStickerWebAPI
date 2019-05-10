@@ -167,12 +167,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Constants\ImgBBConstants.cs" />
+    <Compile Include="Controllers\StickerController.cs" />
+    <Compile Include="Helpers\MimeTypeHelper.cs" />
+    <Compile Include="ImageProcessors\RestImageProcessor.cs" />
+    <Compile Include="Interfaces\IImageProcessor.cs" />
     <Compile Include="Models\StickerRequest.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\StickerGeneratorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ImageProcessorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\Whitney-Semibld.otf" />
